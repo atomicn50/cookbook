@@ -3,9 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer  } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Home, CreateRecipe, Shopping } from './src/Screens';
 import { HOME, CREATE_RECIPE, SHOPPING } from './src/Screens/constants';
