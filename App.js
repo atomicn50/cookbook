@@ -5,31 +5,24 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Home from './src/Screens/Home';
+import CreateRecipeScreen from './src/Screens/CreateRecipe';
 import { HOME, CREATE_RECIPE } from './src/Screens/constants';
 
-function CreateRecipeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Create</Text>
-    </View>
-  );
-}
-
-const Tab = createBottomTabNavigator();
+const { Navigator, Screen } = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused }) => (<MaterialCommunityIcons name={focused ? 'pot-mix' : 'pot-mix-outline'} size={34} color="red" />),
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name={HOME} component={Home} />
-        <Tab.Screen name={CREATE_RECIPE} component={CreateRecipeScreen} />
-      </Tab.Navigator>
+        <Screen name={HOME} component={Home} />
+        <Screen name={CREATE_RECIPE} component={CreateRecipeScreen} />
+      </Navigator>
     </NavigationContainer>
   );
 }
