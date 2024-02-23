@@ -18,7 +18,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Navigator
-        screenOptions={({ route }) => ({
+        screenOptions={() => ({
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
         })}
@@ -27,21 +27,27 @@ export default function App() {
           name={HOME}
           component={Home}
           options={{
-            tabBarIcon: () => (<Ionicons name="home-outline" size={28} color="black" />)
+            tabBarIcon: () => (
+              <Ionicons name="home-outline" size={28} color="black" />
+            )
           }}
         />
         <Screen
           name={CREATE_RECIPE}
           component={CreateRecipeScreen}
           options={{
-            tabBarIcon: () => (<MaterialCommunityIcons name="pot-steam-outline" size={28} color="black" />)
+            tabBarIcon: () => (
+              <MaterialCommunityIcons name="pot-steam-outline" size={28} color="black" />
+            )
           }}
         />
         <Screen
           name={SHOPPING}
           component={Shopping}
           options={{
-            tabBarIcon: () => (<Feather name="shopping-cart" size={28} color="black" />)
+            tabBarIcon: () => (
+              <Feather name="shopping-cart" size={28} color="black" />
+            )
           }}
         />
       </Navigator>
