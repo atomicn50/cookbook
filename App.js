@@ -7,9 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-import Home from './src/Screens/Home';
-import CreateRecipeScreen from './src/Screens/CreateRecipe';
-import Shopping from './src/Screens/Shopping';
+import { Home, CreateRecipe, Shopping } from './src/Screens';
 import { HOME, CREATE_RECIPE, SHOPPING } from './src/Screens/constants';
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -34,7 +32,7 @@ export default function App() {
         />
         <Screen
           name={CREATE_RECIPE}
-          component={CreateRecipeScreen}
+          component={CreateRecipe}
           options={{
             tabBarIcon: () => (
               <MaterialCommunityIcons name="pot-steam-outline" size={28} color="black" />
