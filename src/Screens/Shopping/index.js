@@ -32,11 +32,26 @@ const styles = StyleSheet.create({
   },
   boughtIngredientsContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     marginLeft: 12,
     marginBottom: 8,
   },
   boughtIngredientsHeader: {
     margin: 12,
+    fontSize: 20,
+    color: 'orangered',
+    fontWeight: 'bold'
+  },
+  boughtIngredientQuantity: {
+    padding: 2,
+    fontSize: 18,
+    color: 'dimgray',
+    // textDecorationLine: 'line-through',
+  },
+  boughtIngredient: {
+    fontSize: 18,
+    color: 'dimgray',
+    // textDecorationLine: 'line-through',
   },
 });
 
@@ -125,10 +140,10 @@ export default function Shopping() {
                         })
                       }}
                     >
-                      <Ionicons name="checkbox-outline" size={24} color="black" />
+                      <Ionicons name="checkbox-outline" size={24} color="dimgray" />
                     </TouchableOpacity>
-                    <Text>{quantity > 1 && `(${quantity})`}</Text>
-                    <Text>{boughtIngredient}</Text>
+                    <Text style={styles.boughtIngredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
+                    <Text style={styles.boughtIngredient}>{boughtIngredient}</Text>
                   </View>
                 </View>
               )
