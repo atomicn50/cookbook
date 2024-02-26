@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import { Fontisto, Ionicons } from '@expo/vector-icons';
+import { isEmpty } from 'lodash-es';
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -93,6 +94,7 @@ export default function Shopping() {
           }}
         />
         <View>
+        <Text>{!isEmpty(boughtIngredients) && 'Bought'}</Text>
           <FlatList
             data={Object.entries(boughtIngredients)}
             renderItem={({item}) => {
@@ -100,9 +102,21 @@ export default function Shopping() {
 
               return (
                 <View>
-                  <Text>Bought</Text>
                   <View style={styles.boughtIngredientsContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setBoughtIngredients(currState => {
+                          const newState = {...currState};
+                          delete newState[boughtIngredient];
+                          return newState;
+                        });
+
+                        setIngredients({
+                          ...ingredients,
+                          [boughtIngredient]: quantity,
+                        })
+                      }}
+                    >
                       <Ionicons name="checkbox-outline" size={24} color="black" />
                     </TouchableOpacity>
                     <Text>{quantity > 1 && `(${quantity})`}</Text>
