@@ -23,12 +23,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  ingredientContainer: {
+    flexDirection: 'row',
+  }
 });
 
 
 export default function Shopping() {
   const [input, setInput] = useState('');
-  const [ingredients, setIngredients ] = useState([]);
+  const [ingredients, setIngredients ] = useState({});
 
   return (
     <View>
@@ -42,14 +45,28 @@ export default function Shopping() {
         >
         </TextInput>
         <TouchableOpacity
-          onPress={() => setIngredients([...ingredients, input])}
+          onPress={() => {
+            if (ingredients[input]) {
+              setIngredients({...ingredients, [input]: ingredients[input] + 1})
+            } else {
+              setIngredients({...ingredients, [input]: 1});
+              console.log('Object.entries(ingredients)', Object.entries(ingredients))
+            }
+          }}
         >
           <Fontisto name="shopping-basket-add" size={24} color="black" />
         </TouchableOpacity>
         </View>
         <FlatList
-          data={ingredients}
-          renderItem={({item}) => <Text>{item}</Text>}
+          data={Object.entries(ingredients)}
+          renderItem={({item}) => (
+            <View style={styles.ingredientContainer}>
+              <TouchableOpacity>
+                <Fontisto name="checkbox-passive" size={24} color="black" />
+              </TouchableOpacity>
+              <Text>{item[0]}</Text>
+            </View>
+          )}
         />  
     </View>
   );
