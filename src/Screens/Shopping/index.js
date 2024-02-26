@@ -8,7 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import { Fontisto, Ionicons } from '@expo/vector-icons';
+import { Fontisto, Ionicons, Feather } from '@expo/vector-icons';
 import { isEmpty } from 'lodash-es';
 
 const styles = StyleSheet.create({
@@ -23,12 +23,20 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    fontSize: 16,
   },
   ingredientContainer: {
     flexDirection: 'row',
+    margin: 12,
+    marginBottom: 4,
   },
   boughtIngredientsContainer: {
     flexDirection: 'row',
+    marginLeft: 12,
+    marginBottom: 8,
+  },
+  boughtIngredientsHeader: {
+    margin: 12,
   },
 });
 
@@ -94,7 +102,7 @@ export default function Shopping() {
           }}
         />
         <View>
-        <Text>{!isEmpty(boughtIngredients) && 'Bought'}</Text>
+          <Text style={styles.boughtIngredientsHeader}>{!isEmpty(boughtIngredients) && 'Bought'}</Text>
           <FlatList
             data={Object.entries(boughtIngredients)}
             renderItem={({item}) => {
