@@ -8,13 +8,13 @@ import {
   FlatList,
 } from 'react-native';
 
-import { Fontisto } from '@expo/vector-icons';
+import { Fontisto, Ionicons } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   input: {
     height: 40,
@@ -25,13 +25,17 @@ const styles = StyleSheet.create({
   },
   ingredientContainer: {
     flexDirection: 'row',
-  }
+  },
+  boughtIngredientsContainer: {
+    flexDirection: 'row',
+  },
 });
 
 
 export default function Shopping() {
   const [input, setInput] = useState('');
-  const [ingredients, setIngredients ] = useState({});
+  const [ingredients, setIngredients] = useState({});
+  const [boughtIngredients, setBoughtIngredients] = useState({});
 
   return (
     <View>
@@ -46,8 +50,11 @@ export default function Shopping() {
         </TextInput>
         <TouchableOpacity
           onPress={() => {
-            if (ingredients[input]) {
-              setIngredients({...ingredients, [input]: ingredients[input] + 1})
+            if (input && ingredients[input]) {
+              setIngredients({
+                ...ingredients,
+                [input]: ingredients[input] + 1
+              });
             } else {
               setIngredients({...ingredients, [input]: 1});
             }
@@ -70,6 +77,11 @@ export default function Shopping() {
                       delete newState[ingredient];
                       return newState;
                     });
+
+                    setBoughtIngredients({
+                      ...boughtIngredients,
+                      [ingredient]: quantity
+                    });
                   }}
                 >
                   <Fontisto name="checkbox-passive" size={24} color="black" />
@@ -79,7 +91,28 @@ export default function Shopping() {
               </View>
             )
           }}
-        />  
+        />
+        <View>
+          <FlatList
+            data={Object.entries(boughtIngredients)}
+            renderItem={({item}) => {
+              const [boughtIngredient, quantity] = item;
+
+              return (
+                <View>
+                  <Text>Bought</Text>
+                  <View style={styles.boughtIngredientsContainer}>
+                    <TouchableOpacity>
+                      <Ionicons name="checkbox-outline" size={24} color="black" />
+                    </TouchableOpacity>
+                    <Text>{quantity > 1 && `(${quantity})`}</Text>
+                    <Text>{boughtIngredient}</Text>
+                  </View>
+                </View>
+              )
+            }}
+          />
+        </View>
     </View>
   );
 }
