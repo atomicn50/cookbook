@@ -11,6 +11,7 @@ import {
 import { Fontisto, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { isEmpty } from 'lodash-es';
 
+import BoughtIngredients from './BoughtIngredients';
 import styles from './styles';
 
 export default function Shopping() {
@@ -74,40 +75,12 @@ export default function Shopping() {
             )
           }}
         />
-        <View>
-          <Text style={styles.boughtIngredientsHeader}>{!isEmpty(boughtIngredients) && 'Bought'}</Text>
-          <FlatList
-            data={Object.entries(boughtIngredients)}
-            renderItem={({item}) => {
-              const [boughtIngredient, quantity] = item;
-
-              return (
-                <View>
-                  <View style={styles.boughtIngredientsContainer}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        setBoughtIngredients(currState => {
-                          const newState = {...currState};
-                          delete newState[boughtIngredient];
-                          return newState;
-                        });
-
-                        setIngredients({
-                          ...ingredients,
-                          [boughtIngredient]: quantity,
-                        })
-                      }}
-                    >
-                      <Ionicons name="checkbox-outline" size={24} color="dimgray" />
-                    </TouchableOpacity>
-                    <Text style={styles.boughtIngredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
-                    <Text style={styles.boughtIngredient}>{boughtIngredient}</Text>
-                  </View>
-                </View>
-              )
-            }}
-          />
-        </View>
+        <BoughtIngredients
+          ingredients={ingredients}
+          setIngredients={setIngredients}
+          boughtIngredients={boughtIngredients}
+          setBoughtIngredients={setBoughtIngredients}
+        />
       </View>
     </View>
   );
