@@ -50,7 +50,6 @@ export default function Shopping() {
               setIngredients({...ingredients, [input]: ingredients[input] + 1})
             } else {
               setIngredients({...ingredients, [input]: 1});
-              console.log('Object.entries(ingredients)', Object.entries(ingredients))
             }
           }}
         >
@@ -59,14 +58,27 @@ export default function Shopping() {
         </View>
         <FlatList
           data={Object.entries(ingredients)}
-          renderItem={({item}) => (
-            <View style={styles.ingredientContainer}>
-              <TouchableOpacity>
-                <Fontisto name="checkbox-passive" size={24} color="black" />
-              </TouchableOpacity>
-              <Text>{item[0]}</Text>
-            </View>
-          )}
+          renderItem={({item}) => {
+            const [ingredient, quantity] = item;
+
+            return (
+              <View style={styles.ingredientContainer}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setIngredients(currState => {
+                      const newState = {...currState};
+                      delete newState[ingredient];
+                      return newState;
+                    });
+                  }}
+                >
+                  <Fontisto name="checkbox-passive" size={24} color="black" />
+                </TouchableOpacity>
+                <Text>{quantity > 1 && `(${quantity})`}</Text>
+                <Text>{ingredient}</Text>
+              </View>
+            )
+          }}
         />  
     </View>
   );
