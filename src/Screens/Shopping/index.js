@@ -8,7 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import { Fontisto, Ionicons, Feather } from '@expo/vector-icons';
+import { Fontisto, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { isEmpty } from 'lodash-es';
 
 const styles = StyleSheet.create({
@@ -19,16 +19,28 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 300,
-    margin: 12,
+    width: 315,
+    marginHorizontal: 12,
+    marginTop: 20,
+    marginBottom: 10,
     borderWidth: 1,
     padding: 10,
     fontSize: 16,
+    fontWeight: '500',
+    backgroundColor: 'whitesmoke'
   },
   ingredientContainer: {
     flexDirection: 'row',
-    margin: 12,
-    marginBottom: 4,
+    alignItems: 'center',
+    marginHorizontal: 12,
+    margin: 4,
+  },
+  ingredient: {
+    fontSize: 18,
+  },
+  ingredientQuantity: {
+    padding: 2,
+    fontSize: 18,
   },
   boughtIngredientsContainer: {
     flexDirection: 'row',
@@ -46,12 +58,12 @@ const styles = StyleSheet.create({
     padding: 2,
     fontSize: 18,
     color: 'dimgray',
-    // textDecorationLine: 'line-through',
+    textDecorationLine: 'line-through',
   },
   boughtIngredient: {
     fontSize: 18,
     color: 'dimgray',
-    // textDecorationLine: 'line-through',
+    textDecorationLine: 'line-through',
   },
 });
 
@@ -62,13 +74,14 @@ export default function Shopping() {
   const [boughtIngredients, setBoughtIngredients] = useState({});
 
   return (
-    <View>
-      <View
-        style={styles.inputContainer}
-      >
+    <View style={{backgroundColor: 'white', height: '100%'}}>
+      <View>
+        <View
+          style={styles.inputContainer}
+        >
         <TextInput
           style={styles.input}
-          placeholder='ingredient'
+          placeholder='Add item'
           onChangeText={(i) =>setInput(i)}
         >
         </TextInput>
@@ -108,10 +121,10 @@ export default function Shopping() {
                     });
                   }}
                 >
-                  <Fontisto name="checkbox-passive" size={24} color="black" />
+                  <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
                 </TouchableOpacity>
-                <Text>{quantity > 1 && `(${quantity})`}</Text>
-                <Text>{ingredient}</Text>
+                <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
+                <Text style={styles.ingredient}>{ingredient}</Text>
               </View>
             )
           }}
@@ -150,6 +163,7 @@ export default function Shopping() {
             }}
           />
         </View>
+      </View>
     </View>
   );
 }
