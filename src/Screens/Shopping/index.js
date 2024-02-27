@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import {
   View,
   TouchableOpacity,
@@ -14,15 +14,10 @@ import styles from './styles';
 export default function Shopping() {
   const [input, setInput] = useState('');
   const [ingredients, setIngredients] = useState({});
-
-  /*
-  {
-    beans: {
-      quantity: 1,
-      bought: false
-    }
-  }
-  */
+  const boughtIngredients = useMemo(() => (
+    Object.entries(ingredients)
+      .filter(([_, ingredientMetadata]) => ingredientMetadata.hasIngredientBeenBought)
+  ), [ingredients]);
 
   return (
     <View style={{backgroundColor: 'white', height: '100%'}}>
@@ -39,21 +34,21 @@ export default function Shopping() {
         <TouchableOpacity
           onPress={() => {
             if (input && ingredients[input]) {
-              setIngredients({
-                ...ingredients,
+              setIngredients(prevIngredients => ({
+                ...prevIngredients,
                 [input]: {
-                  ...ingredients[input],
-                  quantity: ingredients[input] + 1,
-                }
-              });
+                  hasIngredientBeenBought: false,
+                  quantity: (prevIngredients[input].quantity || 0) + 1,
+                },
+              }));
             } else {
-              setIngredients({
-                ...ingredients,
+              setIngredients(prevIngredients => ({
+                ...prevIngredients,
                 [input]: {
                   hasIngredientBeenBought: false,
                   quantity: 1,
                 },
-              });
+              }));
             }
           }}
         >
@@ -64,12 +59,10 @@ export default function Shopping() {
           ingredients={ingredients}
           setIngredients={setIngredients}
         />
-        {/* <BoughtIngredients
-          ingredients={ingredients}
-          setIngredients={setIngredients}
+         <BoughtIngredients
           boughtIngredients={boughtIngredients}
-          setBoughtIngredients={setBoughtIngredients}
-        /> */}
+          setIngredients={setIngredients}
+        />
       </View>
     </View>
   );

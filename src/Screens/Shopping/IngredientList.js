@@ -21,13 +21,13 @@ export default function IngredientList({
                <>
                 <TouchableOpacity
                   onPress={() => {
-                    setIngredients({
-                      ...ingredients,
+                    setIngredients(prevIngredients => ({
+                      ...prevIngredients,
                       [ingredient]: {
-                        ...ingredient,
+                        ...prevIngredients[ingredient],
                         hasIngredientBeenBought: true,
-                      }
-                    });
+                      },
+                    }));
                   }}
                 >
                   <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />

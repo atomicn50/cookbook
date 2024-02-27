@@ -6,40 +6,36 @@ import { isEmpty } from 'lodash-es';
 import styles from './styles';
 
 export default function BoughtIngredients({
-  ingredients,
   boughtIngredients,
   setIngredients,
-  setBoughtIngredients
 }) {
   return (
     <View>
       <Text style={styles.boughtIngredientsHeader}>{!isEmpty(boughtIngredients) && 'Bought'}</Text>
       <FlatList
-        data={Object.entries(boughtIngredients)}
+        data={boughtIngredients}
         renderItem={({item}) => {
-          const [boughtIngredient, quantity] = item;
+          const [ingredient, ingredientMetadata] = item;
+          const { quantity } = ingredientMetadata;
 
           return (
             <View>
               <View style={styles.boughtIngredientsContainer}>
                 <TouchableOpacity
                   onPress={() => {
-                    setBoughtIngredients(currState => {
-                      const newState = {...currState};
-                      delete newState[boughtIngredient];
-                      return newState;
-                    });
-
-                    setIngredients({
-                      ...ingredients,
-                      [boughtIngredient]: quantity,
-                    })
+                    setIngredients(prevIngredients => ({
+                      ...prevIngredients,
+                      [ingredient]: {
+                        ...prevIngredients[ingredient],
+                        hasIngredientBeenBought: false,
+                      },
+                    }));
                   }}
                 >
                   <Ionicons name="checkbox-outline" size={24} color="dimgray" />
                 </TouchableOpacity>
                 <Text style={styles.boughtIngredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
-                <Text style={styles.boughtIngredient}>{boughtIngredient}</Text>
+                <Text style={styles.boughtIngredient}>{ingredient}</Text>
               </View>
             </View>
           )
