@@ -38,11 +38,11 @@ export default function Shopping() {
                 ...prevIngredients,
                 [input]: {
                   hasIngredientBeenBought: false,
-                  quantity: (prevIngredients[input].quantity || 0) + 1,
+                  quantity: prevIngredients[input].quantity + 1,
                 },
               }));
             } else {
-              setIngredients(prevIngredients => ({
+              input && setIngredients(prevIngredients => ({
                 ...prevIngredients,
                 [input]: {
                   hasIngredientBeenBought: false,
