@@ -45,7 +45,8 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   boughtIngredientsHeader: {
-    marginLeft: 12,
+    marginTop: 8,
+    marginLeft: 14,
     marginBottom: 12,
     fontSize: 20,
     color: 'orangered',
