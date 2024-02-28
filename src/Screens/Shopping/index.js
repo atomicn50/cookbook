@@ -48,8 +48,8 @@ export default function Shopping() {
             style={styles.input}
             placeholder='Add item'
             onChangeText={(i) =>setInput(i)}
-          >
-          </TextInput>
+            clearButtonMode='while-editing'
+          />
           <TouchableOpacity onPress={handleOnPress} style={styles.inputButton}>
             <Fontisto name="shopping-basket-add" size={24} color="orangered" />
           </TouchableOpacity>
