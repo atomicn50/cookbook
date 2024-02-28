@@ -12,8 +12,7 @@ export default function IngredientList({
     <FlatList
       data={Object.entries(ingredients)}
       renderItem={({item}) => {
-        const [ingredient, ingredientMetadata] = item;
-        const { quantity, hasIngredientBeenBought } = ingredientMetadata;
+        const [ingredient, { quantity, hasIngredientBeenBought }] = item;
 
         return (
           <View style={styles.ingredientContainer}>
