@@ -50,8 +50,8 @@ export default function Shopping() {
             onChangeText={(i) =>setInput(i)}
           >
           </TextInput>
-          <TouchableOpacity onPress={handleOnPress}>
-            <Fontisto name="shopping-basket-add" size={24} color="black" />
+          <TouchableOpacity onPress={handleOnPress} style={styles.inputButton}>
+            <Fontisto name="shopping-basket-add" size={24} color="orangered" />
           </TouchableOpacity>
         </View>
         <IngredientList ingredients={ingredients} setIngredients={setIngredients}/>

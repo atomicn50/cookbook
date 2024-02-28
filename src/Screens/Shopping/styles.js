@@ -5,11 +5,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 4,
   },
   input: {
     height: 40,
-    width: 315,
-    marginHorizontal: 12,
+    width: '80%',
+    marginHorizontal: 6,
     marginTop: 20,
     marginBottom: 10,
     borderWidth: 1,
@@ -17,6 +18,9 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     backgroundColor: 'whitesmoke'
+  },
+  inputButton: {
+    marginHorizontal: 10,
   },
   ingredientContainer: {
     flexDirection: 'row',
@@ -61,7 +65,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   clearListButton: {
     borderWidth: 1,
