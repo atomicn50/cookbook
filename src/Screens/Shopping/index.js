@@ -56,7 +56,7 @@ export default function Shopping() {
         </View>
         <IngredientList ingredients={ingredients} setIngredients={setIngredients}/>
         <BoughtIngredients boughtIngredients={boughtIngredients} setIngredients={setIngredients}/>
-        <ClearListButton/>
+        <ClearListButton onPress={() => setIngredients({})}/>
       </View>
     </View>
   );

@@ -57,7 +57,7 @@ export default StyleSheet.create({
   clearListButtonContainer: {
     position: 'absolute', 
     top: 500,
-    left: 150,
+    left: 120,
   },
   clearListButton: {
     borderWidth: 1,
