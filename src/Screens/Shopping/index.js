@@ -7,7 +7,7 @@ import {
 
 import { Fontisto } from '@expo/vector-icons';
 
-import IngredientList from './IngredienList/IngredientList';
+import IngredientList from './IngredienList'
 import BoughtIngredients from './BoughtIngredients';
 import ClearListButton from './ClearListButton';
 import styles from './styles';
