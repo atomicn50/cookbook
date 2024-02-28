@@ -5,11 +5,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 4,
   },
   input: {
     height: 40,
-    width: 315,
-    marginHorizontal: 12,
+    width: '80%',
+    marginHorizontal: 6,
     marginTop: 20,
     marginBottom: 10,
     borderWidth: 1,
@@ -18,11 +19,17 @@ export default StyleSheet.create({
     fontWeight: '500',
     backgroundColor: 'whitesmoke'
   },
+  inputButton: {
+    marginHorizontal: 10,
+  },
+  ingredientListContainer: {
+    marginTop: 10,
+  },
   ingredientContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 12,
-    margin: 4,
+    marginBottom: 4,
   },
   ingredient: {
     fontSize: 18,
@@ -38,7 +45,8 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   boughtIngredientsHeader: {
-    margin: 12,
+    marginLeft: 12,
+    marginBottom: 12,
     fontSize: 20,
     color: 'orangered',
     fontWeight: 'bold'
@@ -54,4 +62,24 @@ export default StyleSheet.create({
     color: 'dimgray',
     textDecorationLine: 'line-through',
   },
+  clearListButtonContainer: {
+    flex: 1,
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  clearListButton: {
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: 'black',
+    backgroundColor: 'orangered',
+  },
+  clearListText: {
+    fontWeight: '700',
+    color:'white',
+    padding: 8,
+  }
 });
