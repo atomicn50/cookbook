@@ -54,4 +54,20 @@ export default StyleSheet.create({
     color: 'dimgray',
     textDecorationLine: 'line-through',
   },
+  clearListButtonContainer: {
+    position: 'absolute', 
+    top: 500,
+    left: 150,
+  },
+  clearListButton: {
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: 'black',
+    backgroundColor: 'orangered',
+  },
+  clearListText: {
+    fontWeight: '700',
+    color:'white',
+    padding: 8,
+  }
 });

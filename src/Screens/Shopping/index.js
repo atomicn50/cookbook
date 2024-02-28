@@ -9,6 +9,7 @@ import { Fontisto } from '@expo/vector-icons';
 
 import IngredientList from './IngredientList';
 import BoughtIngredients from './BoughtIngredients';
+import ClearListButton from './ClearListButton';
 import styles from './styles';
 
 export default function Shopping() {
@@ -55,6 +56,7 @@ export default function Shopping() {
         </View>
         <IngredientList ingredients={ingredients} setIngredients={setIngredients}/>
         <BoughtIngredients boughtIngredients={boughtIngredients} setIngredients={setIngredients}/>
+        <ClearListButton/>
       </View>
     </View>
   );
