@@ -9,7 +9,7 @@ export default function IngredientList({
   setIngredients,
 }) {
   return (
-    <View>
+    <View style={styles.ingredientListContainer}>
       <FlatList
         data={Object.entries(ingredients)}
         renderItem={({item}) => {

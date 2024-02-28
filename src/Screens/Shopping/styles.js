@@ -22,11 +22,14 @@ export default StyleSheet.create({
   inputButton: {
     marginHorizontal: 10,
   },
+  ingredientListContainer: {
+    marginTop: 10,
+  },
   ingredientContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 12,
-    margin: 4,
+    marginBottom: 4,
   },
   ingredient: {
     fontSize: 18,
@@ -42,7 +45,8 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   boughtIngredientsHeader: {
-    margin: 12,
+    marginLeft: 12,
+    marginBottom: 12,
     fontSize: 20,
     color: 'orangered',
     fontWeight: 'bold'
