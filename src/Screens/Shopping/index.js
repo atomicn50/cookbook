@@ -55,9 +55,9 @@ export default function Shopping() {
           </TouchableOpacity>
         </View>
         <IngredientList ingredients={ingredients} setIngredients={setIngredients}/>
-        <BoughtIngredients boughtIngredients={boughtIngredients} setIngredients={setIngredients}/>
-        <ClearListButton onPress={() => setIngredients({})}/>
+        <BoughtIngredients boughtIngredients={boughtIngredients} setIngredients={setIngredients}/>      
       </View>
+      <ClearListButton onPress={() => setIngredients({})}/>
     </View>
   );
 }

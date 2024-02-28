@@ -55,9 +55,13 @@ export default StyleSheet.create({
     textDecorationLine: 'line-through',
   },
   clearListButtonContainer: {
-    position: 'absolute', 
-    top: 500,
-    left: 120,
+    flex: 1,
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: 10,
   },
   clearListButton: {
     borderWidth: 1,
