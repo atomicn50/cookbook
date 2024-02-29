@@ -2,7 +2,8 @@ import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import styles from './styles';
+import DeleteButton from './DeleteButton';
+import styles from '../styles';
 
 export default function IngredientList({
   ingredients,
@@ -11,7 +12,7 @@ export default function IngredientList({
   return (
     <View style={styles.ingredientListContainer}>
       <FlatList
-        data={Object.entries(ingredients)}
+        data={ingredients}
         renderItem={({item}) => {
           const [ingredient, { quantity, hasIngredientBeenBought }] = item;
 
@@ -34,7 +35,16 @@ export default function IngredientList({
                   </TouchableOpacity>
                   <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
                   <Text style={styles.ingredient}>{ingredient}</Text>
-              </>
+                  <DeleteButton onPress={() => {
+                    setIngredients(prevIngredients => {
+                      const newIngredients = {
+                        ...prevIngredients,
+                      };
+                      delete newIngredients[ingredient];
+                      return newIngredients
+                    });
+                  }}/>
+                </>
               )}
             </View>
           );

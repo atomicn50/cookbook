@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  screen: {
+    backgroundColor: 'white',
+    height: '100%',
+  },
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -10,7 +14,7 @@ export default StyleSheet.create({
   input: {
     height: 40,
     width: '80%',
-    marginHorizontal: 6,
+    marginHorizontal: 4,
     marginTop: 20,
     marginBottom: 10,
     borderWidth: 1,
@@ -20,7 +24,8 @@ export default StyleSheet.create({
     backgroundColor: 'whitesmoke'
   },
   inputButton: {
-    marginHorizontal: 10,
+    marginHorizontal: 12,
+    marginTop: 10,
   },
   ingredientListContainer: {
     marginTop: 10,
@@ -29,7 +34,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 12,
-    marginBottom: 4,
+    marginBottom: 6,
   },
   ingredient: {
     fontSize: 18,
@@ -45,7 +50,8 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   boughtIngredientsHeader: {
-    marginLeft: 12,
+    marginTop: 8,
+    marginLeft: 14,
     marginBottom: 12,
     fontSize: 20,
     color: 'orangered',
