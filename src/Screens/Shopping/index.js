@@ -5,7 +5,7 @@ import {
   TextInput,
 } from 'react-native';
 
-import { Fontisto } from '@expo/vector-icons';
+import { Foundation, Feather } from '@expo/vector-icons';
 
 import IngredientList from './IngredienList'
 import BoughtIngredients from './BoughtIngredients';
@@ -51,7 +51,7 @@ export default function Shopping() {
             clearButtonMode='while-editing'
           />
           <TouchableOpacity onPress={handleOnPress} style={styles.inputButton}>
-            <Fontisto name="shopping-basket-add" size={24} color="orangered" />
+          <Feather name="plus-circle" size={26} color="orangered" />
           </TouchableOpacity>
         </View>
         <IngredientList ingredients={ingredients} setIngredients={setIngredients}/>

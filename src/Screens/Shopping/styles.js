@@ -10,7 +10,7 @@ export default StyleSheet.create({
   input: {
     height: 40,
     width: '80%',
-    marginHorizontal: 6,
+    marginHorizontal: 4,
     marginTop: 20,
     marginBottom: 10,
     borderWidth: 1,
@@ -20,7 +20,8 @@ export default StyleSheet.create({
     backgroundColor: 'whitesmoke'
   },
   inputButton: {
-    marginHorizontal: 10,
+    marginHorizontal: 12,
+    marginTop: 10,
   },
   ingredientListContainer: {
     marginTop: 10,
@@ -29,7 +30,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 12,
-    marginBottom: 4,
+    marginBottom: 6,
   },
   ingredient: {
     fontSize: 18,

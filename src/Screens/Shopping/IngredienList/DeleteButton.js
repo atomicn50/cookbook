@@ -1,11 +1,15 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import { Feather } from '@expo/vector-icons';
+
+import styles from './styles';
+
 export default function DeleteButton({ onPress }) {
   return (
-    <View style={{flex: 1}}>
-      <View style={{flex: 1, alignItems: 'flex-end', marginRight: 60}}>
-        <TouchableOpacity onPress={onPress}>
-          <Text>X</Text>
+    <View style={styles.deleteButtonBottom}>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={onPress} style={styles.button}>
+          <Feather name="minus-circle" size={24} color="gray" />
         </TouchableOpacity>
       </View>
     </View>
