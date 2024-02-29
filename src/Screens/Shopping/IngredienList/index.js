@@ -12,7 +12,7 @@ export default function IngredientList({
   return (
     <View style={styles.ingredientListContainer}>
       <FlatList
-        data={Object.entries(ingredients)}
+        data={ingredients}
         renderItem={({item}) => {
           const [ingredient, { quantity, hasIngredientBeenBought }] = item;
 

@@ -5,7 +5,7 @@ import {
   TextInput,
 } from 'react-native';
 
-import { Foundation, Feather } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 import IngredientList from './IngredienList'
 import BoughtIngredients from './BoughtIngredients';
@@ -15,10 +15,8 @@ import styles from './styles';
 export default function Shopping() {
   const [input, setInput] = useState('');
   const [ingredients, setIngredients] = useState({});
-  const boughtIngredients = (
-    Object.entries(ingredients)
-      .filter(([_, { hasIngredientBeenBought }]) => hasIngredientBeenBought)
-  )
+  const ingredientsData = Object.entries(ingredients);
+  const boughtIngredientsData = ingredientsData.filter(([_, { hasIngredientBeenBought }]) => hasIngredientBeenBought);
 
   const handleOnPress = () => {
     if (input && ingredients[input]) {
@@ -41,7 +39,7 @@ export default function Shopping() {
   };
 
   return (
-    <View style={{backgroundColor: 'white', height: '100%'}}>
+    <View style={styles.screen}>
       <View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -51,11 +49,11 @@ export default function Shopping() {
             clearButtonMode='while-editing'
           />
           <TouchableOpacity onPress={handleOnPress} style={styles.inputButton}>
-          <Feather name="plus-circle" size={26} color="orangered" />
+            <Feather name="plus-circle" size={26} color="orangered" />
           </TouchableOpacity>
         </View>
-        <IngredientList ingredients={ingredients} setIngredients={setIngredients}/>
-        <BoughtIngredients boughtIngredients={boughtIngredients} setIngredients={setIngredients}/>      
+        <IngredientList ingredients={ingredientsData} setIngredients={setIngredients}/>
+        <BoughtIngredients boughtIngredients={boughtIngredientsData} setIngredients={setIngredients}/>      
       </View>
       <ClearListButton onPress={() => setIngredients({})}/>
     </View>
