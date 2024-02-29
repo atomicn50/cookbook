@@ -1,11 +1,5 @@
 import { useState } from 'react';
-import {
-  View,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
-
-import { Feather } from '@expo/vector-icons';
+import { View } from 'react-native';
 
 import InputBar from './InputBar';
 import IngredientList from './IngredienList'
