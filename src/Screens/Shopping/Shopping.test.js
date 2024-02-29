@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 
-import Shopping from '../Shopping';
+import Shopping from './Shopping';
 
 describe('Shopping', () => {
   test('should show input bar', () => {
