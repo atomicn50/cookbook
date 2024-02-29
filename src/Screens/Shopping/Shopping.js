@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { View } from 'react-native';
 
-import InputBar from './InputBar';
-import IngredientList from './IngredienList';
+import InputBar from './InputBar/InputBar';
+import IngredientList from './IngredienList/IngredientList';
 import BoughtIngredients from './BoughtIngredients';
 import ClearListButton from './ClearListButton';
 import styles from './styles';

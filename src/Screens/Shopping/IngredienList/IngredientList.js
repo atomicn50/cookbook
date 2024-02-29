@@ -2,7 +2,7 @@ import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import DeleteButton from './DeleteButton';
+import DeleteButton from './DeleteButton/DeleteButton';
 import styles from '../styles';
 
 export default function IngredientList({
