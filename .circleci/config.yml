@@ -11,3 +11,7 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
       - run: npm run test
+workflows:
+  test_app:
+    jobs:
+      - test
