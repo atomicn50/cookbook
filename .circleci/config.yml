@@ -1,0 +1,17 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.2.0
+
+jobs:
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - run: sudo npm install -g npm@latest
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+      - run: npm run test
+workflows:
+  test_app:
+    jobs:
+      - test
