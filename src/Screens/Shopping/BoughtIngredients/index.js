@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { isEmpty } from 'lodash-es';
 
-import styles from './styles';
+import styles from '../styles';
 
 export default function BoughtIngredients({
   boughtIngredients,

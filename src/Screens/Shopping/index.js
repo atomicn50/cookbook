@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View } from 'react-native';
 
 import InputBar from './InputBar';
-import IngredientList from './IngredienList'
+import IngredientList from './IngredienList';
 import BoughtIngredients from './BoughtIngredients';
 import ClearListButton from './ClearListButton';
 import styles from './styles';

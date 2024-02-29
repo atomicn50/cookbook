@@ -1,14 +1,15 @@
 import { describe, expect, test } from '@jest/globals';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 
-import InputBar from '../InputBar';
+import Shopping from '../Shopping';
 
-describe('Input bar', () => {
-  test('should show placeholder text', () => {
+describe('Shopping', () => {
+  test('should show input bar', () => {
     // act
-    render(<InputBar onPress={jest.fn()} onChangeText={jest.fn()}/>);
+    render(<Shopping />);
 
     // assert
     expect(screen.getByPlaceholderText('Add item')).toBeTruthy();
   });
 });
+
