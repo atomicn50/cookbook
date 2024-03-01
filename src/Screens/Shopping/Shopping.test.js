@@ -68,5 +68,27 @@ describe('Shopping', () => {
         expect(screen.getByText('Bananas')).toBeTruthy();
     });
   });
+
+  describe('after pressing the checkbox next to an ingredient in the bought list', () => {
+    test('ingredient should appear back in shopping list and bought should not show', () => {
+        // arrange
+        const textInput = screen.getByPlaceholderText('Add item');
+        const addIngredientButton = screen.getByTestId('add-ingredient-button');
+
+        // act
+        fireEvent.changeText(textInput, 'Bananas');
+        fireEvent.press(addIngredientButton);
+
+        // press the first time to mark that ingredient is bought
+        fireEvent.press(screen.getByTestId('ingredient-checkbox-button'));
+
+        // press again to mark that ingredient is not bought
+        fireEvent.press(screen.getByTestId('bought-ingredient-checkbox-button'));
+
+        // assert
+        expect(screen.queryByText('Bought')).toBeNull();
+        expect(screen.getByText('Bananas')).toBeTruthy();
+    });
+  });
 });
 

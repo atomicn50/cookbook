@@ -21,6 +21,7 @@ export default function BoughtIngredients({
             <View>
               <View style={styles.boughtIngredientsContainer}>
                 <TouchableOpacity
+                  testID='bought-ingredient-checkbox-button'
                   onPress={() => {
                     setIngredients(prevIngredients => ({
                       ...prevIngredients,
