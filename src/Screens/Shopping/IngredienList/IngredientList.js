@@ -36,15 +36,18 @@ export default function IngredientList({
                   </TouchableOpacity>
                   <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
                   <Text style={styles.ingredient}>{ingredient}</Text>
-                  <DeleteButton onPress={() => {
-                    setIngredients(prevIngredients => {
-                      const newIngredients = {
-                        ...prevIngredients,
-                      };
-                      delete newIngredients[ingredient];
-                      return newIngredients
-                    });
-                  }}/>
+                  <DeleteButton
+                    testID='ingredient-delete-button'
+                    onPress={() => {
+                      setIngredients(prevIngredients => {
+                        const newIngredients = {
+                          ...prevIngredients,
+                        };
+                        delete newIngredients[ingredient];
+                        return newIngredients
+                      });
+                    }}
+                  />
                 </>
               )}
             </View>
