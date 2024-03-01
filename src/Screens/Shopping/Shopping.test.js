@@ -14,7 +14,7 @@ describe('Shopping', () => {
     });
   
     test('should show the add ingredient button', () => {
-      expect(screen.getByRole('button')).toBeTruthy();
+      expect(screen.getByTestId('add-ingredient-button')).toBeTruthy();
     });
   });
 
@@ -22,11 +22,11 @@ describe('Shopping', () => {
     test('should see ingredient appear in list', () => {
       // arrange
       const textInput = screen.getByPlaceholderText('Add item');
-      const button = screen.getByRole('button');
+      const addIngredientButton = screen.getByTestId('add-ingredient-button');
 
       // act
       fireEvent.changeText(textInput, 'Beans');
-      fireEvent.press(button);
+      fireEvent.press(addIngredientButton);
 
       // assert
       expect(screen.getByText('Beans')).toBeTruthy();
@@ -37,16 +37,35 @@ describe('Shopping', () => {
     test('should see ingredient and quantity appear in list', () => {
       // arrange
       const textInput = screen.getByPlaceholderText('Add item');
-      const button = screen.getByRole('button');
+      const addIngredientButton = screen.getByTestId('add-ingredient-button');
 
       // act
       fireEvent.changeText(textInput, 'Fish');
-      fireEvent.press(button);
-      fireEvent.press(button);
+      fireEvent.press(addIngredientButton);
+      fireEvent.press(addIngredientButton);
 
       // assert
       expect(screen.getByText('(2)')).toBeTruthy();
       expect(screen.getByText('Fish')).toBeTruthy();
+    });
+  });
+
+  describe('after pressing the checkbox next to an ingredient', () => {
+    test('ingredient should appear in bought list', () => {
+        // arrange
+        const textInput = screen.getByPlaceholderText('Add item');
+        const addIngredientButton = screen.getByTestId('add-ingredient-button');
+
+        // act
+        fireEvent.changeText(textInput, 'Bananas');
+        fireEvent.press(addIngredientButton);
+
+        // checkbox button only appears after ingredient is added
+        fireEvent.press(screen.getByTestId('ingredient-checkbox-button'));
+
+        // assert
+        expect(screen.getByText('Bought')).toBeTruthy();
+        expect(screen.getByText('Bananas')).toBeTruthy();
     });
   });
 });

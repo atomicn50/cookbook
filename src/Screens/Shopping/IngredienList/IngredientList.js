@@ -21,6 +21,7 @@ export default function IngredientList({
               {!hasIngredientBeenBought && (
                 <>
                   <TouchableOpacity
+                    testID='ingredient-checkbox-button'
                     onPress={() => {
                       setIngredients(prevIngredients => ({
                         ...prevIngredients,

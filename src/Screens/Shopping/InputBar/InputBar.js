@@ -1,8 +1,7 @@
-import { View, TextInput } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
 
-import CommonTouchableOpacity from '../../../common/TouchableOpacity/TouchableOpacity';
 import styles from '../styles';
 
 export default function InputBar({ onChangeText, onPress }) {
@@ -14,9 +13,9 @@ export default function InputBar({ onChangeText, onPress }) {
         onChangeText={(i) =>onChangeText(i)}
         clearButtonMode='while-editing'
       />
-      <CommonTouchableOpacity onPress={onPress} style={styles.inputButton}>
+      <TouchableOpacity testID='add-ingredient-button' onPress={onPress} style={styles.inputButton}>
         <Feather name="plus-circle" size={26} color="orangered" />
-      </CommonTouchableOpacity>
+      </TouchableOpacity>
     </View>
   )
 }
