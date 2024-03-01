@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { Home, CreateRecipe, Shopping } from './src/Screens';
+import { Home, CreateRecipe, Shopping } from './src/Screens/Screens';
 import { HOME, CREATE_RECIPE, SHOPPING } from './src/Screens/constants';
 
 const { Navigator, Screen } = createBottomTabNavigator();

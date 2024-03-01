@@ -2,7 +2,7 @@ import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import DeleteButton from './DeleteButton';
+import DeleteButton from './DeleteButton/DeleteButton';
 import styles from '../styles';
 
 export default function IngredientList({
@@ -21,6 +21,7 @@ export default function IngredientList({
               {!hasIngredientBeenBought && (
                 <>
                   <TouchableOpacity
+                    testID={`${ingredient}-checkbox-button`}
                     onPress={() => {
                       setIngredients(prevIngredients => ({
                         ...prevIngredients,
@@ -35,15 +36,18 @@ export default function IngredientList({
                   </TouchableOpacity>
                   <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
                   <Text style={styles.ingredient}>{ingredient}</Text>
-                  <DeleteButton onPress={() => {
-                    setIngredients(prevIngredients => {
-                      const newIngredients = {
-                        ...prevIngredients,
-                      };
-                      delete newIngredients[ingredient];
-                      return newIngredients
-                    });
-                  }}/>
+                  <DeleteButton
+                    testID='ingredient-delete-button'
+                    onPress={() => {
+                      setIngredients(prevIngredients => {
+                        const newIngredients = {
+                          ...prevIngredients,
+                        };
+                        delete newIngredients[ingredient];
+                        return newIngredients
+                      });
+                    }}
+                  />
                 </>
               )}
             </View>
