@@ -62,7 +62,7 @@ describe('Shopping', () => {
           fireEvent.press(addIngredientButton);
   
           // checkbox button only appears after ingredient is added
-          fireEvent.press(screen.getByTestId('ingredient-checkbox-button'));
+          fireEvent.press(screen.getByTestId('Bananas-checkbox-button'));
   
           // assert
           expect(screen.getByText('Bought')).toBeTruthy();
@@ -102,7 +102,7 @@ describe('Shopping', () => {
           fireEvent.press(addIngredientButton);
   
           // press the first time to mark that ingredient is bought
-          fireEvent.press(screen.getByTestId('ingredient-checkbox-button'));
+          fireEvent.press(screen.getByTestId('Bananas-checkbox-button'));
   
           // press again to mark that ingredient is not bought
           fireEvent.press(screen.getByTestId('bought-ingredient-checkbox-button'));
@@ -110,6 +110,38 @@ describe('Shopping', () => {
           // assert
           expect(screen.queryByText('Bought')).toBeNull();
           expect(screen.getByText('Bananas')).toBeTruthy();
+      });
+    });
+  });
+
+  describe('Clear shopping list', () => {
+    test('should render', () => {
+      expect(screen.getByText('Clear Shopping List')).toBeTruthy();
+    });
+
+    describe('when pressed', () => {
+      test('should remove all items from ingredient list and bought list', () => {
+        // arrange
+        const textInput = screen.getByPlaceholderText('Add item');
+        const addIngredientButton = screen.getByTestId('add-ingredient-button');
+        const clearButton = screen.getByText('Clear Shopping List');
+
+        // act
+        fireEvent.changeText(textInput, 'Kale');
+        fireEvent.press(addIngredientButton);
+
+        fireEvent.changeText(textInput, 'Spinach');
+        fireEvent.press(addIngredientButton);
+
+        // press to mark that Kale is bought
+        fireEvent.press(screen.getByTestId('Kale-checkbox-button'));
+
+        // clear list
+        fireEvent.press(clearButton);
+
+        // assert
+        expect(screen.queryByText('Kale')).toBeNull();
+        expect(screen.queryByText('Spinach')).toBeNull();
       });
     });
   });
