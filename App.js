@@ -9,12 +9,11 @@ import {
 
 import { Home, CreateRecipe, Shopping } from './src/Screens/Screens';
 import { HOME, CREATE_RECIPE, SHOPPING } from './src/constants/screens';
+import COLORS from './src/colors/colors';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 const TAB_ICON_SIZE = 28;
-const FOCUSED_COLOR = 'orangered';
-const UNFOCUSED_COLOR = 'black';
 
 export default function App() {
   return (
@@ -24,12 +23,15 @@ export default function App() {
           const { name } = route;
              
           return {
-            tabBarActiveTintColor: 'orangered',
-            tabBarInactiveTintColor: 'gray',
+            headerStyle: {
+              shadowRadius: 3,
+            },
+            tabBarActiveTintColor: COLORS.PRIMARY,
+            tabBarInactiveTintColor: COLORS.INACTIVE,
             tabBarIcon: ({ focused }) => {
               const commonStyles = {
                 size: TAB_ICON_SIZE,
-                color: focused ? FOCUSED_COLOR : UNFOCUSED_COLOR,
+                color: focused ? COLORS.PRIMARY : COLORS.INACTIVE,
               };
 
               switch (name) {
