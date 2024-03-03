@@ -43,6 +43,12 @@ export default function App() {
                   return <Feather name="shopping-cart" {...commonStyles}/>;
               }
             },
+            tabBarStyle: {
+              shadowOpacity: 0.05
+            },
+            tabBarLabelStyle: {
+              fontSize: 12,
+            },
           }
         }}
       >
