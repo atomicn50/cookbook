@@ -35,7 +35,7 @@ export default function Shopping() {
 
   return (
     <View style={styles.screen}>
-      <InputBar onPress={onPress} onChangeText={setInput}/>
+      <InputBar onPress={onPress} onChangeText={setInput} input={input}/>
       <IngredientList ingredients={ingredientsData} setIngredients={setIngredients}/>
       <BoughtIngredients boughtIngredients={boughtIngredientsData} setIngredients={setIngredients}/>      
       <ClearListButton onPress={() => setIngredients({})}/>
