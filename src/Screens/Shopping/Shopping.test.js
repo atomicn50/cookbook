@@ -1,6 +1,7 @@
 import { describe, expect, test, beforeEach } from '@jest/globals';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 
+import InputBar from './InputBar/InputBar';
 import Shopping from './Shopping';
 
 describe('Shopping', () => {
@@ -9,13 +10,37 @@ describe('Shopping', () => {
   });
 
   describe('on first render', () => {
-    test('should show input bar', () => {
-      expect(screen.getByPlaceholderText('Add item')).toBeTruthy();
+    describe('Input bar', () => {
+      test('should show input bar', () => {
+        expect(screen.getByPlaceholderText('Add item')).toBeTruthy();
+      });
+
+      describe('add ingredient button', () => {
+        test('should render', () => {
+          expect(screen.getByTestId('add-ingredient-button')).toBeTruthy();
+        });
+
+        describe('when no input has been added', () => {
+          test('button should not be able to be pressed', () => {
+            // arrange
+            const onPressMock = jest.fn();
+            render(<InputBar onPress={onPressMock} />);
+            const button = screen.getByTestId('add-ingredient-button')
+
+            // act
+            fireEvent.press(button);
+
+            // assert
+            expect(onPressMock).not.toHaveBeenCalled();
+          });
+        });
+      });
     });
-  
-    test('should show the add ingredient button', () => {
-      expect(screen.getByTestId('add-ingredient-button')).toBeTruthy();
+
+    test('should show clear shopping list button', () => {
+      expect(screen.getByText('Clear Shopping List')).toBeTruthy();
     });
+
   });
 
   describe('after pressing add ingredient button', () => {
@@ -115,10 +140,6 @@ describe('Shopping', () => {
   });
 
   describe('Clear shopping list', () => {
-    test('should render', () => {
-      expect(screen.getByText('Clear Shopping List')).toBeTruthy();
-    });
-
     describe('when pressed', () => {
       test('should remove all items from ingredient list and bought list', () => {
         // arrange

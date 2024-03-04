@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 
 import styles from '../styles';
 
-export default function InputBar({ onChangeText, onPress }) {
+export default function InputBar({ onChangeText, onPress, input }) {
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -13,8 +13,17 @@ export default function InputBar({ onChangeText, onPress }) {
         onChangeText={(i) =>onChangeText(i)}
         clearButtonMode='while-editing'
       />
-      <TouchableOpacity testID='add-ingredient-button' onPress={onPress} style={styles.inputButton}>
-        <Feather name="plus-circle" size={26} color="orangered" />
+      <TouchableOpacity
+        testID='add-ingredient-button'
+        disabled={!input}
+        onPress={onPress}
+        style={styles.inputButton}
+      >
+        <Feather
+          name="plus-circle"
+          size={26}
+          color={input ? 'orangered' : 'gray'}
+        />
       </TouchableOpacity>
     </View>
   )
