@@ -13,8 +13,17 @@ export default function InputBar({ onChangeText, onPress, input }) {
         onChangeText={(i) =>onChangeText(i)}
         clearButtonMode='while-editing'
       />
-      <TouchableOpacity testID='add-ingredient-button' disabled={!input} onPress={onPress} style={styles.inputButton}>
-        <Feather name="plus-circle" size={26} color={input ? 'orangered' : 'gray'} />
+      <TouchableOpacity
+        testID='add-ingredient-button'
+        disabled={!input}
+        onPress={onPress}
+        style={styles.inputButton}
+      >
+        <Feather
+          name="plus-circle"
+          size={26}
+          color={input ? 'orangered' : 'gray'}
+        />
       </TouchableOpacity>
     </View>
   )
