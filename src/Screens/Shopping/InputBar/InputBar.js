@@ -24,6 +24,7 @@ export default function InputBar({ handleInputChange, onPress, input, handleAuto
       /> */}
       <AutocompleteInput
         placeholder='Add item'
+        clearButtonMode='while-editing'
         value={input}
         autoCapitalize='none'
         onChangeText={(i) => handleInputChange(i)}
