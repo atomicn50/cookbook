@@ -11,6 +11,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginLeft: 4,
   },
+  autocompleteContainer: {
+    width: 200
+  },
   input: {
     height: 40,
     width: '80%',

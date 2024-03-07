@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Component } from 'react';
 import { View } from 'react-native';
 
 import InputBar from './InputBar/InputBar';
@@ -7,38 +7,111 @@ import BoughtIngredients from './BoughtIngredients/BoughtIngredients';
 import ClearListButton from './ClearListButton/ClearListButton';
 import styles from './styles';
 
-export default function Shopping() {
-  const [input, setInput] = useState('');
-  const [ingredients, setIngredients] = useState({});
-  const ingredientsData = Object.entries(ingredients);
-  const boughtIngredientsData = ingredientsData.filter(([_, { hasIngredientBeenBought }]) => hasIngredientBeenBought);
+export default class Shopping extends Component {
+  state = {
+    input: '',
+    ingredients: {},
+  }
 
-  const onPress = () => {
-    if (input && ingredients[input]) {
-      setIngredients(prevIngredients => ({
-        ...prevIngredients,
-        [input]: {
+  handleInputChange = (input) => {
+    this.setState({
+      input: input
+    })
+  }
+
+  handleAutocompleteOnPress = (ingredient) => {
+    this.setState((prevState) => {
+      const { ingredients } = prevState;
+      const updatedIngredients = {
+        ...ingredients,
+        [ingredient]: {
           hasIngredientBeenBought: false,
-          quantity: prevIngredients[input].quantity + 1,
-        },
+          quantity: (ingredients[ingredient]?.quantity || 0) + 1,
+        }
+      };
+      return {
+        input: ingredient,
+        ingredients: updatedIngredients
+      };
+    }, () => {
+      this.handleInputChange('');
+    });
+  }
+
+  onPress = () => {
+    const { input, ingredients } = this.state;
+
+    if (input && ingredients[input]) {
+      this.setState((prevState) => ({
+        ingredients: {
+          ...prevState.ingredients,
+          [input]: {
+            hasIngredientBeenBought: false,
+            quantity: prevState.ingredients[input].quantity + 1,
+          },
+        }
       }));
     } else {
-      input && setIngredients(prevIngredients => ({
-        ...prevIngredients,
-        [input]: {
-          hasIngredientBeenBought: false,
-          quantity: 1,
-        },
+      input && this.setState(prevState => ({
+        ingredients: {
+          ...prevState.ingredients,
+          [input]: {
+            hasIngredientBeenBought: false,
+            quantity: 1,
+          },
+        }
       }));
     }
-  };
+  }
 
-  return (
-    <View style={styles.screen}>
-      <InputBar onPress={onPress} onChangeText={setInput} input={input}/>
-      <IngredientList ingredients={ingredientsData} setIngredients={setIngredients}/>
-      <BoughtIngredients boughtIngredients={boughtIngredientsData} setIngredients={setIngredients}/>      
-      <ClearListButton onPress={() => setIngredients({})}/>
-    </View>
-  );
+  handleCheckIngredient = (ingredient) => {
+     this.setState(prevState => {
+      const { ingredients } = prevState;
+
+    return {
+      ingredients: {
+        ...ingredients,
+        [ingredient]: {
+          ...ingredients[ingredient],
+          hasIngredientBeenBought: !ingredients[ingredient]?.hasIngredientBeenBought,
+        },
+      }};
+    });
+  }
+
+  handleRemoveIngredient = (ingredient) => {
+    this.setState((prevState) => {
+      const newState = {
+        ingredients: { ...prevState.ingredients },
+      };
+      delete newState.ingredients[ingredient];
+      return newState;
+    });
+  }
+
+  render() {
+    const ingredientsData = Object.entries(this.state.ingredients);
+    const boughtIngredientsData = ingredientsData.filter(([_, { hasIngredientBeenBought }]) => hasIngredientBeenBought);
+    
+    return (
+      <View style={styles.screen}>
+        <InputBar
+          onPress={this.onPress}
+          handleAutocompleteOnPress={this.handleAutocompleteOnPress}
+          handleInputChange={this.handleInputChange}
+          input={this.state.input}
+        />
+        <IngredientList
+          ingredients={ingredientsData}
+          handleCheckIngredient={this.handleCheckIngredient}
+          handleRemoveIngredient={this.handleRemoveIngredient}
+        />
+        <BoughtIngredients
+          boughtIngredients={boughtIngredientsData}
+          handleCheckIngredient={this.handleCheckIngredient}
+        />      
+        <ClearListButton onPress={() => this.setState({ingredients: {}})}/>
+      </View>
+    );
+  }
 }

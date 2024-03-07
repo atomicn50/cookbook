@@ -7,7 +7,8 @@ import styles from '../styles';
 
 export default function IngredientList({
   ingredients,
-  setIngredients,
+  handleCheckIngredient,
+  handleRemoveIngredient,
 }) {
   return (
     <View style={styles.ingredientListContainer}>
@@ -22,15 +23,7 @@ export default function IngredientList({
                 <>
                   <TouchableOpacity
                     testID={`${ingredient}-checkbox-button`}
-                    onPress={() => {
-                      setIngredients(prevIngredients => ({
-                        ...prevIngredients,
-                        [ingredient]: {
-                          ...prevIngredients[ingredient],
-                          hasIngredientBeenBought: true,
-                        },
-                      }));
-                    }}
+                    onPress={() => handleCheckIngredient(ingredient)}
                   >
                     <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
                   </TouchableOpacity>
@@ -38,15 +31,7 @@ export default function IngredientList({
                   <Text style={styles.ingredient}>{ingredient}</Text>
                   <DeleteButton
                     testID='ingredient-delete-button'
-                    onPress={() => {
-                      setIngredients(prevIngredients => {
-                        const newIngredients = {
-                          ...prevIngredients,
-                        };
-                        delete newIngredients[ingredient];
-                        return newIngredients
-                      });
-                    }}
+                    onPress={() => handleRemoveIngredient(ingredient)}
                   />
                 </>
               )}
