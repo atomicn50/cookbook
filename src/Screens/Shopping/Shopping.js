@@ -1,4 +1,4 @@
-import { useState, Component } from 'react';
+import { Component } from 'react';
 import { View } from 'react-native';
 
 import InputBar from './InputBar/InputBar';
