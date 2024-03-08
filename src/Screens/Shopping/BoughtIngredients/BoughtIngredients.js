@@ -7,7 +7,7 @@ import styles from '../styles';
 
 export default function BoughtIngredients({
   boughtIngredients,
-  setIngredients,
+  handleCheckIngredient,
 }) {
   return (
     <View>
@@ -20,18 +20,7 @@ export default function BoughtIngredients({
           return (
             <View>
               <View style={styles.boughtIngredientsContainer}>
-                <TouchableOpacity
-                  testID='bought-ingredient-checkbox-button'
-                  onPress={() => {
-                    setIngredients(prevIngredients => ({
-                      ...prevIngredients,
-                      [ingredient]: {
-                        ...prevIngredients[ingredient],
-                        hasIngredientBeenBought: false,
-                      },
-                    }));
-                  }}
-                >
+                <TouchableOpacity testID='bought-ingredient-checkbox-button' onPress={() => handleCheckIngredient(ingredient)} >
                   <Ionicons name="checkbox-outline" size={24} color="dimgray" />
                 </TouchableOpacity>
                 <Text style={styles.boughtIngredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>

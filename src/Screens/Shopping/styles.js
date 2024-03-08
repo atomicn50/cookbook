@@ -17,11 +17,11 @@ export default StyleSheet.create({
     marginHorizontal: 4,
     marginTop: 20,
     marginBottom: 10,
-    borderWidth: 1,
     padding: 10,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '500',
-    backgroundColor: 'whitesmoke'
+    backgroundColor: 'whitesmoke',
+    borderRadius: 10
   },
   inputButton: {
     marginHorizontal: 12,
