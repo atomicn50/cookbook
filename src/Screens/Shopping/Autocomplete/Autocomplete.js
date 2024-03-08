@@ -1,13 +1,23 @@
-import { FlatList, Pressable, Text, View, StyleSheet } from 'react-native';
+import { FlatList, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   autocompleteContainer: {
     position: 'absolute',
-    top: 65,
-    left: 20,
+    top: 60,
+    left: 15,
     right: 0,
     zIndex: 1,
-    backgroundColor: 'white'
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: 'silver',
+  },
+  result: {
+    padding: 4
+  },
+  text: {
+    fontSize: 18
   }
 })
 
@@ -17,9 +27,9 @@ export default function Autocomplete({ input, data, onPress}) {
       <FlatList
         data={input ? data : []}
         renderItem={({ item }) => (
-          <Pressable onPress={() => onPress(item)}>
-            <Text>{item}</Text>
-          </Pressable>
+          <TouchableOpacity onPress={() => onPress(item)} style={styles.result}>
+            <Text style={styles.text}>{item}</Text>
+          </TouchableOpacity>
         )}
       />
     </View>
