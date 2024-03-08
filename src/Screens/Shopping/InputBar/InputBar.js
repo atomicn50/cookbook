@@ -10,7 +10,7 @@ import styles from '../styles';
 export default function InputBar({ handleInputChange, onPress, input, handleAutocompleteOnPress }) {
   const data = useMemo(() => (
     ingredients
-      .filter(i => input.length > 1 && i.startsWith(input))
+      .filter(i => input?.length > 1 && i.startsWith(input))
       .slice(0, 3)
   ), [ingredients, input]);
 
@@ -38,7 +38,7 @@ export default function InputBar({ handleInputChange, onPress, input, handleAuto
           />
         </TouchableOpacity>
       </View>
-      {input.length > 1 && <Autocomplete data={data} onPress={handleAutocompleteOnPress} input={input} />}
+      {input?.length > 1 && <Autocomplete data={data} onPress={handleAutocompleteOnPress} input={input} />}
     </>
   )
 }
