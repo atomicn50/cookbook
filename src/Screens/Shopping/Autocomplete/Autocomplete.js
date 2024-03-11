@@ -28,7 +28,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Autocomplete({ input, data, onPress, hideAutocomplete }) {
+const MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE = 2;
+
+export default function Autocomplete({ input, data, onPress }) {
+  const inputMatchesOnlyItemInAutocomplete = (
+    (input && input === data[0])
+      && data.length === 1
+  );
+  const hideAutocomplete = (
+    inputMatchesOnlyItemInAutocomplete
+      || input.length < MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE
+  );
+
   return (
     !hideAutocomplete && (
       <View style={styles.autocompleteContainer}>
