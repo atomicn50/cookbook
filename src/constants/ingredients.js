@@ -1,4 +1,4 @@
-export default ingredients = [
+export default INGREDIENTS = [
 'salt',
 'olive oil',
 'butter',
