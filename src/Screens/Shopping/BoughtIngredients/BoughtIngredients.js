@@ -10,7 +10,7 @@ export default function BoughtIngredients({
   handleCheckIngredient,
 }) {
   return (
-    <View>
+    <View style={styles.boughtIngredientsContainer}>
       <Text style={styles.boughtIngredientsHeader}>{!isEmpty(boughtIngredients) && 'Bought'}</Text>
       <FlatList
         data={boughtIngredients}
@@ -19,7 +19,7 @@ export default function BoughtIngredients({
 
           return (
             <View>
-              <View style={styles.boughtIngredientsContainer}>
+              <View style={styles.boughtIngredients}>
                 <TouchableOpacity testID='bought-ingredient-checkbox-button' onPress={() => handleCheckIngredient(ingredient)} >
                   <Ionicons name="checkbox-outline" size={24} color="dimgray" />
                 </TouchableOpacity>

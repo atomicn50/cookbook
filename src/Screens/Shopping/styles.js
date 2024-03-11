@@ -33,7 +33,7 @@ export default StyleSheet.create({
   ingredientContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 12,
+    marginHorizontal: 16,
     marginBottom: 6,
   },
   ingredient: {
@@ -44,6 +44,9 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   boughtIngredientsContainer: {
+    marginLeft: 4,
+  },
+  boughtIngredients: {
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 12,
