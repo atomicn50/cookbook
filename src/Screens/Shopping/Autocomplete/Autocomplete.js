@@ -28,26 +28,28 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function Autocomplete({ input, data, onPress}) {
+export default function Autocomplete({ input, data, onPress, hideAutocomplete }) {
   return (
-    <View style={styles.autocompleteContainer}>
-      <FlatList
-        data={input ? data : []}
-        renderItem={({ item }) => {
-          const inputLength = input.length;
-          const regular = item.slice(0, inputLength);
-          const bold = item.slice(inputLength);
+    !hideAutocomplete && (
+      <View style={styles.autocompleteContainer}>
+        <FlatList
+          data={input ? data : []}
+          renderItem={({ item }) => {
+            const inputLength = input.length;
+            const regular = item.slice(0, inputLength);
+            const bold = item.slice(inputLength);
 
-          return (
-            <TouchableOpacity onPress={() => onPress(item)} style={styles.resultsContainer}>
-              <View style={styles.result}>
-                <Text style={styles.text}>{regular}</Text>
-                <Text style={styles.bold}>{bold}</Text>
-              </View>
-            </TouchableOpacity>
-          )
-        }}
-      />
-    </View>
+            return (
+              <TouchableOpacity onPress={() => onPress(item)} style={styles.resultsContainer}>
+                <View style={styles.result}>
+                  <Text style={styles.text}>{regular}</Text>
+                  <Text style={styles.bold}>{bold}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </View>
+    )
   );
 }

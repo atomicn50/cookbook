@@ -7,12 +7,25 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 import ingredients from '../../../constants/ingredients';
 import styles from '../styles';
 
+const MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE = 2;
+
 export default function InputBar({ handleInputChange, onPress, input, handleAutocompleteOnPress }) {
   const data = useMemo(() => (
     ingredients
       .filter(i => input?.length > 1 && i.startsWith(input))
       .slice(0, 3)
   ), [ingredients, input]);
+
+  const inputMatchesOnlyItemInAutocomplete = useMemo(() => (
+    (input && input === data[0])
+      && data.length === 1
+  ), [input, data]);
+
+  const hideAutocomplete = useMemo(() => (
+    inputMatchesOnlyItemInAutocomplete
+      || input.length < MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE
+  ), [input, data])
+  console.log('hideAutocomplete', hideAutocomplete)
 
   return (
     <>
@@ -38,7 +51,12 @@ export default function InputBar({ handleInputChange, onPress, input, handleAuto
           />
         </TouchableOpacity>
       </View>
-      {input?.length > 1 && <Autocomplete data={data} onPress={handleAutocompleteOnPress} input={input} />}
+      <Autocomplete
+        data={data}
+        onPress={handleAutocompleteOnPress}
+        input={input}
+        hideAutocomplete={hideAutocomplete}
+      />
     </>
   )
 }
