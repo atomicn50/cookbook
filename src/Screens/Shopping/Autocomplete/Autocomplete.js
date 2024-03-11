@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18
   }
-})
+});
 
 export default function Autocomplete({ input, data, onPress, hideAutocomplete }) {
   return (
