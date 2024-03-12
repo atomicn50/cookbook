@@ -38,6 +38,7 @@ export default function Autocomplete({ input, data, onPress }) {
   const hideAutocomplete = (
     inputMatchesOnlyItemInAutocomplete
       || input.length < MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE
+      || data.length === 0
   );
 
   return (
