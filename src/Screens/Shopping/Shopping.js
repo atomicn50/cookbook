@@ -11,8 +11,6 @@ import BoughtIngredients from './BoughtIngredients/BoughtIngredients';
 import ClearListButton from './ClearListButton/ClearListButton';
 import styles from './styles';
 
-const MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE = 2;
-
 export default class Shopping extends Component {
   state = {
     input: '',
@@ -102,13 +100,13 @@ export default class Shopping extends Component {
     const ingredientsData = ingredientsArray.filter(([_, { hasIngredientBeenBought }]) => !hasIngredientBeenBought);
     const boughtIngredientsData = ingredientsArray.filter(([_, { hasIngredientBeenBought }]) => hasIngredientBeenBought);
 
-    const getData = (ingredientList, input) => (
+    const getAutocompleteData = (ingredientList, input) => (
       ingredientList
         .filter(i => input?.length > 1 && i.startsWith(input))
         .slice(0, 3)
     );
 
-    const memoizedGetData = memoizeOne(getData);
+    const memoizedGetData = memoizeOne(getAutocompleteData);
     
     return (
       <View style={styles.screen}>
