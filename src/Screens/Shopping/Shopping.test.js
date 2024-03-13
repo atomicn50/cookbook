@@ -166,4 +166,43 @@ describe('Shopping', () => {
       });
     });
   });
+
+  describe('Autocomplete', () => {
+    describe('when there is no input' , () => {
+      test('should not render', () => {
+        expect(screen.queryByTestId('shopping-autocomplete')).toBeNull();
+      });
+    });
+
+    describe('when there is only one letter typed in the input bar', () => {
+      test('should not render', () => {
+        // arrange
+        const textInput = screen.getByPlaceholderText('Add item');
+
+        // act
+        fireEvent.changeText(textInput, 'b');
+
+        // assert
+        expect(screen.queryByTestId('shopping-autocomplete')).toBeNull();
+      });
+    });
+
+    describe('when there are two letters typed in the input bar', () => {
+      test('should show suggestions', () => {
+        // arrange
+        const textInput = screen.getByPlaceholderText('Add item');
+
+        // act
+        fireEvent.changeText(textInput, 'bu');
+
+        // assert
+        // the autocomplete component render the unbolded and bolded text as
+        // two separate text components so we test that the bold text is present
+        expect(screen.queryAllByText('bu').length).toBe(3);
+        expect(screen.getByText('tter')).toBeTruthy();
+        expect(screen.getByText('ttermilk')).toBeTruthy();
+        expect(screen.getByText('tternut squash')).toBeTruthy();
+      });
+    });
+  });
 });

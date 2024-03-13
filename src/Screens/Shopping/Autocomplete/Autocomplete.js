@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 
 const MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE = 2;
 
-export default function Autocomplete({ input, data, onPress }) {
+export default function Autocomplete({ input, data, onPress, testID }) {
   const inputMatchesOnlyItemInAutocomplete = (
     (input && input === data[0])
       && data.length === 1
@@ -43,7 +43,7 @@ export default function Autocomplete({ input, data, onPress }) {
 
   return (
     !hideAutocomplete && (
-      <View style={styles.autocompleteContainer}>
+      <View style={styles.autocompleteContainer} testID={testID}>
         <FlatList
           data={input ? data : []}
           renderItem={({ item }) => {
@@ -52,7 +52,10 @@ export default function Autocomplete({ input, data, onPress }) {
             const bold = item.slice(inputLength);
 
             return (
-              <TouchableOpacity onPress={() => onPress(item)} style={styles.resultsContainer}>
+              <TouchableOpacity
+                onPress={() => onPress(item)} style={styles.resultsContainer}
+                accessibilityRole="button"
+              >
                 <View style={styles.result}>
                   <Text style={styles.text}>{regular}</Text>
                   <Text style={styles.bold}>{bold}</Text>
