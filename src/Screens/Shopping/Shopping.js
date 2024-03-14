@@ -116,6 +116,7 @@ export default class Shopping extends Component {
           input={this.state.input}
         />
         <Autocomplete
+          testID={'shopping-autocomplete'}
           data={memoizedGetData(INGREDIENTS, input)}
           onPress={this.handleAutocompleteOnPress}
           input={input}
