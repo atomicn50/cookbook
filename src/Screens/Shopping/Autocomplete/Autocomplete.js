@@ -54,7 +54,7 @@ export default function Autocomplete({ input, data, onPress, testID }) {
             return (
               <TouchableOpacity
                 onPress={() => onPress(item)} style={styles.resultsContainer}
-                accessibilityRole="button"
+                testID={`${item}-autocomplete-result`}
               >
                 <View style={styles.result}>
                   <Text style={styles.text}>{regular}</Text>

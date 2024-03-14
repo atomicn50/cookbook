@@ -204,5 +204,20 @@ describe('Shopping', () => {
         expect(screen.getByText('tternut squash')).toBeTruthy();
       });
     });
+
+    describe('when a autocomplete suggestion is pressed', () => {
+      test('item should appear in the list', () => {
+        // arrange
+        const textInput = screen.getByPlaceholderText('Add item');
+
+        // act
+        fireEvent.changeText(textInput, 'bu');
+        fireEvent.press(screen.getByTestId('butter-autocomplete-result'));
+
+        // assert
+        expect(screen.getByText('butter')).toBeTruthy();
+        expect(screen.getByTestId('butter-checkbox-button')).toBeTruthy();
+      });
+    });
   });
 });
