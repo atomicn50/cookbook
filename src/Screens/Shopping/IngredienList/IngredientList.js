@@ -26,8 +26,10 @@ export default function IngredientList({
                 >
                   <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.ingredientContainer}>
                   <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
                   <Text style={styles.ingredient}>{ingredient}</Text>
+                </TouchableOpacity>
                 <DeleteButton testID='ingredient-delete-button'onPress={() => handleRemoveIngredient(ingredient)} />
               </>
             </View>

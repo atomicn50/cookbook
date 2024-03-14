@@ -42,7 +42,7 @@ export default class Shopping extends Component {
     });
   }
 
-  onPress = () => {
+  handleInputBarOnPress = () => {
     const { input, ingredients } = this.state;
 
     if (input && ingredients[input]) {
@@ -111,7 +111,7 @@ export default class Shopping extends Component {
     return (
       <View style={styles.screen}>
         <InputBar
-          onPress={this.onPress}
+          onPress={this.handleInputBarOnPress}
           handleInputChange={this.handleInputChange}
           input={this.state.input}
         />
