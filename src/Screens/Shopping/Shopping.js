@@ -1,7 +1,11 @@
 import { Component } from 'react';
 import { View } from 'react-native';
 
+import memoizeOne from 'memoize-one';
+
+import INGREDIENTS from '../../constants/ingredients'
 import InputBar from './InputBar/InputBar';
+import Autocomplete from './Autocomplete/Autocomplete';
 import IngredientList from './IngredienList/IngredientList';
 import BoughtIngredients from './BoughtIngredients/BoughtIngredients';
 import ClearListButton from './ClearListButton/ClearListButton';
@@ -90,16 +94,31 @@ export default class Shopping extends Component {
   }
 
   render() {
-    const ingredientsData = Object.entries(this.state.ingredients);
-    const boughtIngredientsData = ingredientsData.filter(([_, { hasIngredientBeenBought }]) => hasIngredientBeenBought);
+    const { input, ingredients } = this.state;
+
+    const ingredientsArray = Object.entries(ingredients);
+    const ingredientsData = ingredientsArray.filter(([_, { hasIngredientBeenBought }]) => !hasIngredientBeenBought);
+    const boughtIngredientsData = ingredientsArray.filter(([_, { hasIngredientBeenBought }]) => hasIngredientBeenBought);
+
+    const getAutocompleteData = (ingredientList, input) => (
+      ingredientList
+        .filter(i => input?.length > 1 && i.startsWith(input))
+        .slice(0, 3)
+    );
+
+    const memoizedGetData = memoizeOne(getAutocompleteData);
     
     return (
       <View style={styles.screen}>
         <InputBar
           onPress={this.onPress}
-          handleAutocompleteOnPress={this.handleAutocompleteOnPress}
           handleInputChange={this.handleInputChange}
           input={this.state.input}
+        />
+        <Autocomplete
+          data={memoizedGetData(INGREDIENTS, input)}
+          onPress={this.handleAutocompleteOnPress}
+          input={input}
         />
         <IngredientList
           ingredients={ingredientsData}

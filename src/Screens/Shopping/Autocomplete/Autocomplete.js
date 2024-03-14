@@ -26,28 +26,45 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18
   }
-})
+});
 
-export default function Autocomplete({ input, data, onPress}) {
+const MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE = 2;
+
+export default function Autocomplete({ input, data, onPress, testID }) {
+  const inputMatchesOnlyItemInAutocomplete = (
+    (input && input === data[0])
+      && data.length === 1
+  );
+  const hideAutocomplete = (
+    inputMatchesOnlyItemInAutocomplete
+      || input.length < MINIMUM_INPUT_LENGTH_TO_SHOW_AUTOCOMPLETE
+      || data.length === 0
+  );
+
   return (
-    <View style={styles.autocompleteContainer}>
-      <FlatList
-        data={input ? data : []}
-        renderItem={({ item }) => {
-          const inputLength = input.length;
-          const regular = item.slice(0, inputLength);
-          const bold = item.slice(inputLength);
+    !hideAutocomplete && (
+      <View style={styles.autocompleteContainer} testID={testID}>
+        <FlatList
+          data={input ? data : []}
+          renderItem={({ item }) => {
+            const inputLength = input.length;
+            const regular = item.slice(0, inputLength);
+            const bold = item.slice(inputLength);
 
-          return (
-            <TouchableOpacity onPress={() => onPress(item)} style={styles.resultsContainer}>
-              <View style={styles.result}>
-                <Text style={styles.text}>{regular}</Text>
-                <Text style={styles.bold}>{bold}</Text>
-              </View>
-            </TouchableOpacity>
-          )
-        }}
-      />
-    </View>
+            return (
+              <TouchableOpacity
+                onPress={() => onPress(item)} style={styles.resultsContainer}
+                testID={`${item}-autocomplete-result`}
+              >
+                <View style={styles.result}>
+                  <Text style={styles.text}>{regular}</Text>
+                  <Text style={styles.bold}>{bold}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </View>
+    )
   );
 }

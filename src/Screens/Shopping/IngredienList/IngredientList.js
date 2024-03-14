@@ -15,23 +15,21 @@ export default function IngredientList({
       <FlatList
         data={ingredients}
         renderItem={({item}) => {
-          const [ingredient, { quantity, hasIngredientBeenBought }] = item;
+          const [ingredient, { quantity }] = item;
 
           return (
             <View style={styles.ingredientContainer}>
-              {!hasIngredientBeenBought && (
-                <>
-                  <TouchableOpacity
-                    testID={`${ingredient}-checkbox-button`}
-                    onPress={() => handleCheckIngredient(ingredient)}
-                  >
-                    <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
-                  </TouchableOpacity>
-                  <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
-                  <Text style={styles.ingredient}>{ingredient}</Text>
-                  <DeleteButton testID='ingredient-delete-button'onPress={() => handleRemoveIngredient(ingredient)} />
-                </>
-              )}
+              <>
+                <TouchableOpacity
+                  testID={`${ingredient}-checkbox-button`}
+                  onPress={() => handleCheckIngredient(ingredient)}
+                >
+                  <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
+                </TouchableOpacity>
+                <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
+                <Text style={styles.ingredient}>{ingredient}</Text>
+                <DeleteButton testID='ingredient-delete-button'onPress={() => handleRemoveIngredient(ingredient)} />
+              </>
             </View>
           );
         }}
