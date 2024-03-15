@@ -41,21 +41,22 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   checkButton: {
+    alignItems: 'flex-end',
     flex: 1,
-    alignItems: 'flex-end'
+    paddingRight: 5,
   },
   editingContainer: {
+    flex: 1,
     flexDirection: 'row',
     marginHorizontal: 16,
+    marginBottom: 10,
   },
   editIngredientContainer: {
-    flex: 1,
     height: 30,
     backgroundColor: 'whitesmoke',
-    width: '75%',
+    width: '78%',
     flexDirection: 'row',
-    marginHorizontal: 16,
-    marginBottom: 6,
+    marginLeft: 4,
     borderRadius: 10,
     alignItems: 'center',
   },
