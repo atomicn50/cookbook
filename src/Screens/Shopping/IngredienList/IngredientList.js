@@ -23,17 +23,22 @@ export default function IngredientList({
           return (
             <View>
               {isEditing
-                ? <View style={styles.ingredientContainer}>
-                    <TextInput onChangeText={(query) => setEdited({ [ingredient]: query})}>{ingredient}</TextInput>
-                    <TouchableOpacity onPress={() => handleEditingIngredient(ingredient, edited[ingredient])}>
-                      <MaterialCommunityIcons name="check" size={24} color="black" />
+                ? <View style={styles.editingContainer}>
+                    <TouchableOpacity testID={`${ingredient}-checkbox-button`} onPress={() => handleCheckIngredient(ingredient)}>
+                      <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
                     </TouchableOpacity>
+                    <View style={styles.editIngredientContainer}>
+                      <TextInput autoFocus onChangeText={(query) => setEdited({ [ingredient]: query})} style={styles.ingredient}>{ingredient}</TextInput>
+                      <TouchableOpacity onPress={() => handleEditingIngredient(ingredient, edited[ingredient])} style={styles.checkButton}>
+                        <MaterialCommunityIcons name="check" size={24} color="black" />
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 : <View style={styles.ingredientContainer}>
                     <TouchableOpacity testID={`${ingredient}-checkbox-button`} onPress={() => handleCheckIngredient(ingredient)}>
                       <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.ingredientContainer} onPress={() => handleIngredientOnPress(ingredient)}>
+                    <TouchableOpacity style={styles.textContainer} onPress={() => handleIngredientOnPress(ingredient)}>
                       <Text style={styles.ingredientQuantity}>{quantity > 1 && `(${quantity})`}</Text>
                       <Text style={styles.ingredient}>{ingredient}</Text>
                     </TouchableOpacity>
