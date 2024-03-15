@@ -30,13 +30,20 @@ export default function IngredientList({
                     <View style={styles.editIngredientContainer}>
                       <TextInput
                         autoFocus
+                        value={edited[ingredient]}
                         style={styles.ingredient}
                         onBlur={() => handleIngredientOnPress(ingredient)}
+                        onFocus={() => setEdited({ [ingredient]: ingredient} )}
                         onChangeText={(query) => setEdited({ [ingredient]: query})}
                       >
-                        {ingredient}
                       </TextInput>
-                      <TouchableOpacity onPress={() => handleEditingIngredient(ingredient, edited[ingredient])} style={styles.checkButton}>
+                      <TouchableOpacity onPress={() => {
+                        if (ingredient !== edited[ingredient]) {
+                          handleEditingIngredient(ingredient, edited[ingredient]);
+                        } else {
+                          handleIngredientOnPress(ingredient);
+                        }
+                      }} style={styles.checkButton}>
                         <MaterialCommunityIcons name="check" size={24} color="black" />
                       </TouchableOpacity>
                     </View>
