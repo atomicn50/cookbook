@@ -28,7 +28,14 @@ export default function IngredientList({
                       <MaterialCommunityIcons name="checkbox-blank-outline" size={24} color="black" />
                     </TouchableOpacity>
                     <View style={styles.editIngredientContainer}>
-                      <TextInput autoFocus onChangeText={(query) => setEdited({ [ingredient]: query})} style={styles.ingredient}>{ingredient}</TextInput>
+                      <TextInput
+                        autoFocus
+                        style={styles.ingredient}
+                        onBlur={() => handleIngredientOnPress(ingredient)}
+                        onChangeText={(query) => setEdited({ [ingredient]: query})}
+                      >
+                        {ingredient}
+                      </TextInput>
                       <TouchableOpacity onPress={() => handleEditingIngredient(ingredient, edited[ingredient])} style={styles.checkButton}>
                         <MaterialCommunityIcons name="check" size={24} color="black" />
                       </TouchableOpacity>
