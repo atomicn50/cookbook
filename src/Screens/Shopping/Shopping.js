@@ -84,6 +84,7 @@ export default class Shopping extends Component {
         [ingredient]: {
           ...ingredients[ingredient],
           hasIngredientBeenBought: !ingredients[ingredient]?.hasIngredientBeenBought,
+          isEditing: false,
         },
       }};
     });
