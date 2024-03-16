@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, FlatList, TouchableOpacity, Text, TextInput } from 'react-native';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
 import DeleteButton from './DeleteButton/DeleteButton';
 import styles from '../styles';
@@ -31,22 +31,24 @@ export default function IngredientList({
                       <TextInput
                         autoFocus
                         value={edited[ingredient]}
-                        style={styles.ingredient}
+                        style={styles.edited}
                         onBlur={() => handleIngredientOnPress(ingredient)}
                         onFocus={() => setEdited({ [ingredient]: ingredient} )}
                         onChangeText={(query) => setEdited({ [ingredient]: query})}
                       >
                       </TextInput>
-                      <TouchableOpacity onPress={() => {
-                        if (ingredient !== edited[ingredient]) {
-                          handleEditingIngredient(ingredient, edited[ingredient]);
-                        } else {
-                          handleIngredientOnPress(ingredient);
-                        }
-                      }} style={styles.checkButton}>
-                        <MaterialCommunityIcons name="check" size={24} color="black" />
-                      </TouchableOpacity>
                     </View>
+                    <View style={styles.test}>
+                      <TouchableOpacity onPress={() => {
+                          if (ingredient !== edited[ingredient]) {
+                            handleEditingIngredient(ingredient, edited[ingredient]);
+                          } else {
+                            handleIngredientOnPress(ingredient);
+                          }
+                        }}>
+                          <Feather name="plus-circle" size={24} color="gray" />
+                        </TouchableOpacity>
+                      </View>
                   </View>
                 : <View style={styles.ingredientContainer}>
                     <TouchableOpacity testID={`${ingredient}-checkbox-button`} onPress={() => handleCheckIngredient(ingredient)}>

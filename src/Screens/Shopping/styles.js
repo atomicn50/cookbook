@@ -34,31 +34,34 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 16,
     marginBottom: 15,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 4,
   },
   textContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  checkButton: {
-    alignItems: 'flex-end',
-    flex: 1,
-    paddingRight: 5,
-  },
   editingContainer: {
-    flex: 1,
     flexDirection: 'row',
     marginHorizontal: 16,
     marginBottom: 10,
+    alignItems: 'center',
   },
   editIngredientContainer: {
-    height: 30,
     backgroundColor: 'whitesmoke',
-    width: '78%',
+    width: '68%',
     flexDirection: 'row',
     marginLeft: 4,
     borderRadius: 10,
     alignItems: 'center',
+    height: 35,
+  },
+  test: {
+    marginLeft: 8,
+  },
+  edited: {
+    fontSize: 18,
+    paddingVertical: 4
   },
   ingredient: {
     fontSize: 18,
