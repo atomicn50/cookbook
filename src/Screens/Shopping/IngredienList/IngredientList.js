@@ -46,7 +46,7 @@ export default function IngredientList({
                             handleIngredientOnPress(ingredient);
                           }
                         }}>
-                          <Feather name="plus-circle" size={24} color="gray" />
+                          <Feather name="plus-circle" size={24} color="orangered" />
                         </TouchableOpacity>
                       </View>
                   </View>

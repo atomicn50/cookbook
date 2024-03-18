@@ -54,7 +54,8 @@ export default StyleSheet.create({
     marginLeft: 4,
     borderRadius: 10,
     alignItems: 'center',
-    height: 35,
+    height: 33,
+    marginBottom: 1,
   },
   test: {
     marginLeft: 8,
