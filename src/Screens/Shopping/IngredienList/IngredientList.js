@@ -39,13 +39,16 @@ export default function IngredientList({
                       </TextInput>
                     </View>
                     <View style={styles.test}>
-                      <TouchableOpacity onPress={() => {
+                      <TouchableOpacity
+                        testID='editing-ingredient-add-button'
+                        onPress={() => {
                           if (ingredient !== edited[ingredient]) {
                             handleEditingIngredient(ingredient, edited[ingredient]);
                           } else {
                             handleIngredientOnPress(ingredient);
                           }
-                        }}>
+                        }}
+                      >
                           <Feather name="plus-circle" size={24} color="orangered" />
                         </TouchableOpacity>
                       </View>
