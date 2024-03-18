@@ -29,6 +29,7 @@ export default function IngredientList({
                     </TouchableOpacity>
                     <View style={styles.editIngredientContainer}>
                       <TextInput
+                        testID={`${ingredient}-editing-text-input`}
                         autoFocus
                         value={edited[ingredient]}
                         style={styles.edited}
