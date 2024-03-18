@@ -112,6 +112,29 @@ describe('Shopping', () => {
         expect(screen.queryByText('Quinoa')).toBeNull();
       });
     });
+
+    describe('when editing ingredient', () => {
+      test('after pressing edit ingredient button, edited name should appear', () => {
+        // arrange
+        const textInput = screen.getByPlaceholderText('Add item');
+        const addIngredientButton = screen.getByTestId('add-ingredient-button');
+
+        // act
+        fireEvent.changeText(textInput, 'Spinach');
+        fireEvent.press(addIngredientButton);
+
+        // arrange
+        const ingredientButton = screen.getByText('Spinach');
+
+        // act
+        fireEvent.press(ingredientButton);
+        fireEvent.changeText(screen.getByTestId('Spinach-editing-text-input'), 'Whole spinach');
+        fireEvent.press(screen.getByTestId('editing-ingredient-add-button'));
+
+        // assert
+        expect(screen.getByText('Whole spinach')).toBeTruthy();
+      });
+    });
   });
 
 

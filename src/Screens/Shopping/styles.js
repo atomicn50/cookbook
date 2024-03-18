@@ -32,9 +32,37 @@ export default StyleSheet.create({
   },
   ingredientContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginHorizontal: 16,
-    marginBottom: 6,
+    marginBottom: 15,
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  textContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editingContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 16,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  editIngredientContainer: {
+    backgroundColor: 'whitesmoke',
+    width: '68%',
+    flexDirection: 'row',
+    marginLeft: 4,
+    borderRadius: 10,
+    alignItems: 'center',
+    height: 33,
+    marginBottom: 1,
+  },
+  test: {
+    marginLeft: 8,
+  },
+  edited: {
+    fontSize: 18,
+    paddingVertical: 4
   },
   ingredient: {
     fontSize: 18,

@@ -11,6 +11,12 @@ import BoughtIngredients from './BoughtIngredients/BoughtIngredients';
 import ClearListButton from './ClearListButton/ClearListButton';
 import styles from './styles';
 
+const DEFAULT_INGREDIENT_PROPERTIES = {
+  hasIngredientBeenBought: false,
+  quantity: 1,
+  isEditing: false,
+};
+
 export default class Shopping extends Component {
   state = {
     input: '',
@@ -42,7 +48,7 @@ export default class Shopping extends Component {
     });
   }
 
-  onPress = () => {
+  handleInputBarOnPress = () => {
     const { input, ingredients } = this.state;
 
     if (input && ingredients[input]) {
@@ -51,6 +57,7 @@ export default class Shopping extends Component {
           ...prevState.ingredients,
           [input]: {
             hasIngredientBeenBought: false,
+            isEditing: false,
             quantity: prevState.ingredients[input].quantity + 1,
           },
         }
@@ -60,8 +67,7 @@ export default class Shopping extends Component {
         ingredients: {
           ...prevState.ingredients,
           [input]: {
-            hasIngredientBeenBought: false,
-            quantity: 1,
+            ...DEFAULT_INGREDIENT_PROPERTIES
           },
         }
       }));
@@ -78,6 +84,7 @@ export default class Shopping extends Component {
         [ingredient]: {
           ...ingredients[ingredient],
           hasIngredientBeenBought: !ingredients[ingredient]?.hasIngredientBeenBought,
+          isEditing: false,
         },
       }};
     });
@@ -92,6 +99,38 @@ export default class Shopping extends Component {
       return newState;
     });
   }
+
+  handleIngredientOnPress = (ingredient) => {
+    this.setState(prevState => {
+      const { ingredients } = prevState;
+
+    return {
+      ingredients: {
+        ...ingredients,
+        [ingredient]: {
+          ...ingredients[ingredient],
+          isEditing: !ingredients[ingredient]?.isEditing,
+        },
+      }};
+    });
+  }
+
+  handleEditingIngredient = (ingredient, editedIngredient = ingredient) => (
+    this.setState(prevState => {
+      const { ingredients: prevIngredients } = prevState;
+
+      const newState = {
+        ingredients: prevIngredients
+      };
+
+      delete newState.ingredients[ingredient];
+
+      newState.ingredients[editedIngredient] = {
+        ...DEFAULT_INGREDIENT_PROPERTIES,
+      }
+      return newState;
+    })
+  )
 
   render() {
     const { input, ingredients } = this.state;
@@ -111,17 +150,20 @@ export default class Shopping extends Component {
     return (
       <View style={styles.screen}>
         <InputBar
-          onPress={this.onPress}
+          onPress={this.handleInputBarOnPress}
           handleInputChange={this.handleInputChange}
           input={this.state.input}
         />
         <Autocomplete
+          testID={'shopping-autocomplete'}
           data={memoizedGetData(INGREDIENTS, input)}
           onPress={this.handleAutocompleteOnPress}
           input={input}
         />
         <IngredientList
           ingredients={ingredientsData}
+          handleIngredientOnPress={this.handleIngredientOnPress}
+          handleEditingIngredient={this.handleEditingIngredient}
           handleCheckIngredient={this.handleCheckIngredient}
           handleRemoveIngredient={this.handleRemoveIngredient}
         />
